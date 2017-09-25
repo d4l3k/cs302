@@ -24,3 +24,22 @@ for n = 1:25
   err = un - uTrue;
   fprintf('n = %d, u_n = %f, err = %f\n', n, un, err)
 end
+
+% problem 3.h
+
+u50 = integral(@(x)x.^50./(x+15),0,1)
+
+un = u50;
+for i = 1:25
+  n = 50-i;
+  uTrue = integral(@(x)x.^n./(x+15),0,1);
+  un = -un/k + 1/(n*k);
+  err = un - uTrue;
+  fprintf('n = %d, u_n = %f, err = %f\n', n, un, err)
+end
+
+u25True = integral(@(x)x.^25./(x+15),0,1)
+
+u25ErrAbs = un-u25True
+
+u25ErrRel = u25ErrAbs/u25True
