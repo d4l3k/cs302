@@ -28,12 +28,12 @@ $g$ it must be smaller.
 $$|3n^3 - n^2 - 3(n-1)^3 + (n-1)^2| \leq  6(n^3 - (n-1)^3)$$
 
 $$|(n-1)^2 - n^2| \leq  3(n^3 - (n-1)^3)$$
+$$|n^2-2n+1 - n^2| \leq  3(n^3 - n^3 + 3n^2-3n+1)$$
+$$|2n+1| \leq  9n^2-9n+9$$
 
-This holds since $|(n-1)^2-n^2|$ is trivially smaller than $3(n^3 - (n-1)^3)$.
+This holds since $|2n+1|$ is trivially smaller than $9n^2-9n+9$.
 
 Thus, $f(n) = O(g(n))$.
-
-TODO: cleanup
 
 ### (b)
 
@@ -58,10 +58,15 @@ We must show that $c_1(g(n) - g(n-1)) \leq f(n)-f(n-1) \leq c_2 (g(n)-g(n-1))$ s
 $g$ it must be smaller.
 
 $$n^3 - (n-1)^3 \leq 3n^3+n^2 - 3(n-1)^3-(n-1)^2 \leq 6n^3 - 6(n-1)^3$$
+$$n^3 - (n^3-3n^2+3n-1) \leq 3n^3+n^2 - 3(n^3-3n^2+3n-1)-(n^2-2n+1) \leq 6n^3 - 6(n^3-3n^2+3n-1)$$
+$$3n^2-3n+1 \leq 3n^3+n^2 - 3n^3+9n^2-9n+9-n^2+2n-1 \leq 6n^3 - 6n^3+18n^2-18n+6$$
+$$3n^2-3n+1 \leq 9n^2-7n+8 \leq 18n^2-18n+6$$
+$$3n^2 \leq 9n^2-4n+7 \leq 18n^2-15n+5$$
 
-$$-2n^3 +2(n-1)^3 \leq n^2 -(n-1)^2 \leq 3n^3 - 3(n-1)^3$$
+We can ignore the smaller terms since they are $=o(n^2)$. Thus leaving us with:
+$$3n^2 \leq 9n^2 \leq 18n^2$$
 
-TODO: cleanup
+This clearly holds and thus $f(n) = \Theta(g(n))$.
 
 ## Question 2
 
