@@ -20,6 +20,7 @@ less than 0 and one side greater. Thus, bisection works just fine.
 ![](./1.b.i.png)\
 
 
+TODO: comment on convergence
 
 #### 1.b.ii
 
@@ -36,25 +37,47 @@ range $[0.5, 0.6]$.
 ![](./1.b.ii.png)\
 
 
+TODO: comment on convergence
+
 #### 1.b.iii
 
 ![](./1.b.iii.png)\
 
 
+TODO: comment on convergence
 
 #### 1.b.iiii
 
 ![](./1.b.iiii.png)\
 
 
+TODO: comment on convergence
 
 ## 2
 
 ### 2.a
 
+$$x^2+\frac{3}{16} = x$$
+$$x^2-x+\frac{3}{16} = 0$$
+$$x=\{\frac14, \frac34\}$$
+
 ### 2.b
 
+$$f'(x) = 2x$$
+
+You can be sure that $\frac14$ will converge using fixed point iteration since
+the magnitude of the slope is less than $1$. $f'(\frac34)=\frac32$.
+
 ### 2.c
+
+Need to find $\rho$.
+
+$$\rho^n = 100$$.
+$$n = \frac{\log 100}{\log \rho}$$
+$$|x_k^2+\frac{3}{16} - (x^*)^2 - \frac{3}{16}| \leq \rho |x_k - x^*|$$
+$$|x_k^2 - (x^*)^2| \leq \rho |x_k - x^*|$$
+
+
 
 ## 3
 
