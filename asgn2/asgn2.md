@@ -76,12 +76,18 @@ $$\rho^n = 100$$.
 $$n = \frac{\log 100}{\log \rho}$$
 $$|x_k^2+\frac{3}{16} - (x^*)^2 - \frac{3}{16}| \leq \rho |x_k - x^*|$$
 $$|x_k^2 - (x^*)^2| \leq \rho |x_k - x^*|$$
+$$|x_k^2 - (x^*)^2| \leq \rho |x_k - x^*|$$
+$$\frac{|x_k^2 - (x^*)^2|}{|x_k - x^*|} \leq \rho$$
+$$\rho \geq x_k + x^*$$
 
-
+$$n = \frac{\log 100}{\log ( x_k + x^*)}$$
 
 ## 3
 
 ### 3.a
+
+$$f(x) = (x-1)^2e^x$$
+$$f'(x) = e^x(x^2-1)$$
 
 ### 3.b
 
