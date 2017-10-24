@@ -25,7 +25,7 @@ left = 0.5;
 right = 0.6;
 xs = []
 
-while abs(left-right)>10e-10
+while abs(left-right)>1e-10
   mid = (left+right)/2;
   xs = [xs, mid];
   y = f(mid);
@@ -49,7 +49,7 @@ print('1.b.i.png', '-dpng');
 % 1.b.ii
 
 function y = g(x)
-  y = x - f(x)/fp(x);
+  y = x - f(x)/2;
 end
 
 x = 0.5;
@@ -57,7 +57,7 @@ last_x = -100000000;
 
 xs = [x];
 
-while abs(x-last_x)>10e-10
+while abs(x-last_x)>1e-10
   last_x = x;
   x = g(x);
   xs = [xs, x];
@@ -77,7 +77,7 @@ last_x = -100000000;
 
 xs = [x];
 
-while abs(x-last_x)>10e-10
+while abs(x-last_x)>1e-10
   last_x = x;
   x -= f(x)/fp(x);
   xs = [xs, x];
@@ -90,14 +90,14 @@ ylabel('x');
 title('x convergence');
 print('1.b.iii.png', '-dpng');
 
-% 1.b.iiii
+% 1.b.iv
 
 x = 0.6;
 last_x = 0.5;
 
 xs = [last_x, x];
 
-while abs(x-last_x)>10e-10
+while abs(x-last_x)>1e-10
   tmp_x = x;
   x -= f(x)*(x-last_x)/(f(x)-f(last_x));
   last_x = tmp_x;
@@ -109,4 +109,4 @@ plot(1:length(xs), xs);
 xlabel('n');
 ylabel('x');
 title('x convergence');
-print('1.b.iiii.png', '-dpng');
+print('1.b.iv.png', '-dpng');
