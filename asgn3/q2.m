@@ -49,19 +49,19 @@ b = 1:n;
 % 2.b
 
 function gt = g(t)
-  gt = (pi/2)^2*sin(pi/2 * t)
+  gt = (pi/2)^2*sin(pi/2 * t);
 end
 
-n = 100
-h = 1/n
+n = 100;
+h = 1/n;
 
-d1 = repmat(-1/h^2, 1, n-1)
-d2 = repmat(2/h^2, 1, n)
-d3 = repmat(-1/h^2, 1, n-1)
-b = g((1:n) * h)
+d1 = repmat(-1/h^2, 1, n-1);
+d2 = repmat(2/h^2, 1, n);
+d3 = repmat(-1/h^2, 1, n-1);
+b = g((1:n) * h);
 
-v = solvetridiagonal(b, d1, d2, d3)
+v = solvetridiagonal(b, d1, d2, d3);
 
-u = sin(pi/2 * (1:n) * h)
+u = sin(pi/2 * (1:n) * h);
 
-norm(v-u, inf)
+norm(v-u, inf);
