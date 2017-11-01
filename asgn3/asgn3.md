@@ -84,7 +84,7 @@ Seems to work just fine.
 
 ### 2.b
 
-We find $||v-u||_{\infty} = 0.98998$. The computation of $v$ matches the
+We find $||v-u||_{\infty} = 2.0562*10^{-5}$. The computation of $v$ matches the
 solution that matlab's $\\$ operator returns.
 
 
