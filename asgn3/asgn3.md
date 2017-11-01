@@ -1,5 +1,7 @@
 # CPSC 302 - Assignment 3
 
+Tristan Rice, q7w9a, 25886145
+
 ## 1. Linear Algebra
 
 ### 1.a
@@ -7,11 +9,11 @@
 $$||A||_1 = max_{j} (a +b, b + a + b,\ldots, b + a) = a + 2b$$
 $$||A||_\infty = max_{j} (a +b, b + a + b,\ldots, b + a) = a + 2b$$
 
-$$||A||_2 = \sqrt{\Lambda_{max}(A^TA)}=\sigma_{max}(A)$$
+$$||A||_2 = \sqrt{\lambda_{max}(A^TA)}=\sigma_{max}(A)$$
 
 The largest singular value is the square root of the largets eigen vector.
 
-$$\Lambda_{max} = a+2b$$
+$$\lambda_{max} = a+2b$$
 $$\sigma_{max} = \sqrt{a+2b}$$
 
 $$||A||_2 = \sqrt{a+2b}$$
@@ -76,11 +78,15 @@ $$\kappa_2(A) = \frac{a+2b}{a-2b}$$
 
 ## 2. Tridiagonal Systems of Equations
 
-TODO
-
 ### 2.a
 
+Seems to work just fine.
+
 ### 2.b
+
+We find $||v-u||_{\infty} = 0.98998$. The computation of $v$ matches the
+solution that matlab's $\\$ operator returns.
+
 
 ## 3. Cholesky Decomposition
 
@@ -131,14 +137,55 @@ $A$ must be positive definite.
 
 ### 3.b
 
-$$A=chol(A)chol(A)^T$$
-
-$$chol(B) = \begin{bmatrix}
-chol(A) & 0 \\
-dunno & \sqrt{\alpha}
+$$A=\begin{bmatrix}
+A & a \\
+a^T & \alpha
 \end{bmatrix}$$
 
-TODO
+Let's define $G$ to be the Cholesky decomposition of $A$.
+
+We want to find a new factorization of $B$ in the form
+
+$$\begin{bmatrix}
+G & 0 \\
+h^T & i
+\end{bmatrix}$$
+
+$$\begin{bmatrix}
+A & a \\
+a^T & \alpha
+\end{bmatrix} = \begin{bmatrix}
+G & 0 \\
+h^T & i
+\end{bmatrix}
+\begin{bmatrix}
+G^T & h \\
+0 & i
+\end{bmatrix} =
+\begin{bmatrix}
+GG^T & Gh \\
+G^Th^T & h^Th + i^2
+\end{bmatrix}$$
+
+Thus,
+
+$$a = Gh, \alpha = h^Th+i^2$$
+
+Solving for $h$,
+$$h = G^{-1}a$$
+
+Solving for $i$,
+
+$$i^2 = \alpha - (G^{-1}a)^T(G^{-1}a)$$
+$$i = \sqrt{\alpha - (G^{-1}a)^TG^{-1}a}$$
+
+Thus, the Cholesky factorization of $B$ is,
+
+$$chol(B) = \begin{bmatrix}
+G & 0 \\
+(G^{-1}a)^T & \sqrt{\alpha - (G^{-1}a)^TG^{-1}a}
+\end{bmatrix}$$
+
 
 ### 3.c
 
