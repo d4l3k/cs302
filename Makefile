@@ -8,7 +8,7 @@ PDFS += $(patsubst %.m,%.pdf,$(MS))
 all: $(PDFS)
 
 %.pdf: %.md
-	- cd `dirname $<` && pandoc --latex-engine xelatex --include-in-header=../../config-files/rice.tex -o `basename $@` `basename $<`
+	- cd `dirname $<` && pandoc --pdf-engine xelatex --include-in-header=../../config-files/rice.tex -o `basename $@` `basename $<`
 
 %.pdf: %.m
 	- cd `dirname $<` && nvim -c "hardcopy > `basename $< .m`.ps" -c quit `basename $<` && ps2pdf `basename $< .m`.ps && rm `basename $< .m`.ps
@@ -24,6 +24,10 @@ asgn2.pdf: $(ASGN2_PDFS)
 ASGN3_PDFS = $(shell find asgn3 -name "*.pdf" | sort)
 asgn3.pdf: $(ASGN3_PDFS)
 	pdfunite $(ASGN3_PDFS) asgn3.pdf
+
+ASGN4_PDFS = $(shell find asgn4 -name "*.pdf" | sort)
+asgn4.pdf: $(ASGN4_PDFS)
+	pdfunite $(ASGN4_PDFS) asgn4.pdf
 
 NOTE_PDFS = $(shell find notes -name "*.pdf" | sort)
 notes.pdf: $(NOTE_PDFS)
