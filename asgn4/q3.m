@@ -71,7 +71,7 @@ function x = solveClassicalGS(A, b)
     Q(:, j) = A(:, j);
     for i=1:(j-1)
       % compute the dot product between A j and Q i
-      R(i, j) = A(:, j)' * Q(:, i);
+      R(i, j) = Q(:, j)' * A(:, i);
       Q(:, j) = Q(:, j) - R(i, j) * Q(:, i);
     end
     % compute R jj value

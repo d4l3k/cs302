@@ -55,30 +55,224 @@ $$A=\begin{bmatrix}
 0 & 0 & \epsilon
 \end{bmatrix}$$
 
-Since we have a 4x3 matrix, we can decompose it into a 4x3 matrix and a 3x3
-matrix.
-
-$$A=\begin{bmatrix}
-\frac{1}{\sqrt{1 + \epsilon^2}} & 0 & 1 \\
-\frac{\epsilon}{\sqrt{1 + \epsilon^2}} & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & \epsilon
-\end{bmatrix}
-\begin{bmatrix}
-\sqrt{1 + \epsilon^2} & \epsilon & \epsilon \\
-0 & 0 & 0 \\
-0 & 0 & 0
+$$q_1 = \begin{bmatrix}
+1 \\
+\epsilon \\
+0 \\
+0
 \end{bmatrix}$$
 
-TODO: finish up
+$$q_2 = \begin{bmatrix}
+1 \\
+0 \\
+\epsilon \\
+0
+\end{bmatrix}
+- \frac{\langle q_1, A_2 \rangle}{\langle q_1, q_1 \rangle}q_1$$
+
+$$q_2 = \begin{bmatrix}
+1 \\
+0 \\
+\epsilon \\
+0
+\end{bmatrix}
+- \frac{1}{1+\epsilon^2}q_1$$
+
+$1+\epsilon^2 = 1$ since $\epsilon$ is close to machine precision.
+
+$$q_2 = \begin{bmatrix}
+1 \\
+0 \\
+\epsilon \\
+0
+\end{bmatrix}
+- q_1$$
+
+$$q_2 = \begin{bmatrix}
+0 \\
+-\epsilon \\
+\epsilon \\
+0
+\end{bmatrix}$$
+
+$$q_3 = \begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{\langle q_1, A_3 \rangle}{\langle q_1, q_1 \rangle}q_1
+- \frac{\langle q_2, A_3 \rangle}{\langle q_2, q_2 \rangle}q_2$$
+
+$$q_3 = \begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{1}{1+\epsilon^2}q_1
+- \frac{\epsilon^2}{2\epsilon^2}q_2$$
+
+$$q_3 = \begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\epsilon
+\end{bmatrix}
+- q_1
+- \frac{1}{2}q_2$$
+
+$$q_3 = \begin{bmatrix}
+0 \\
+-\epsilon \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{1}{2}q_2$$
+
+$$q_3 = \begin{bmatrix}
+0 \\
+\frac{-\epsilon}{2} \\
+\frac{-\epsilon}{2} \\
+\epsilon
+\end{bmatrix} $$
+
+$$q_2^Tq_3 =
+0 * 0
+-\epsilon * \frac{-\epsilon}{2}
++ \epsilon * \frac{-\epsilon}{2}
++ 0 * \epsilon = 0$$
+
 
 ### 2.b
 
-TODO
+Modified Gram-Schmidt is the same as Classical Gram-Schmidt for the first two
+columns.
+
+$$A=\begin{bmatrix}
+1 & 1 & 1 \\
+\epsilon & 0 & 0 \\
+0 & \epsilon & 0 \\
+0 & 0 & \epsilon
+\end{bmatrix}$$
+
+$$q_1 = \begin{bmatrix}
+1 \\
+\epsilon \\
+0 \\
+0
+\end{bmatrix}$$
+
+$$q_2 = \begin{bmatrix}
+1 \\
+0 \\
+\epsilon \\
+0
+\end{bmatrix}
+- \frac{\langle q_1, A_2 \rangle}{\langle q_1, q_1 \rangle}q_1$$
+
+$$q_2 = \begin{bmatrix}
+1 \\
+0 \\
+\epsilon \\
+0
+\end{bmatrix}
+- \frac{1}{1+\epsilon^2}q_1$$
+
+$1+\epsilon^2 = 1$ since $\epsilon$ is close to machine precision.
+
+$$q_2 = \begin{bmatrix}
+1 \\
+0 \\
+\epsilon \\
+0
+\end{bmatrix}
+- q_1$$
+
+$$q_2 = \begin{bmatrix}
+0 \\
+-\epsilon \\
+\epsilon \\
+0
+\end{bmatrix}$$
+
+We now see the differences in how multiple projections are applied.
+
+$$q_3^{(1)} = \begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{\langle q_1, A_3 \rangle}{\langle q_1, q_1 \rangle}q_1$$
+
+$$q_3^{(1)} = \begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{1}{1+\epsilon^2}q_1$$
+
+$$q_3^{(1)} = \begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\epsilon
+\end{bmatrix}
+- q_1$$
+
+$$q_3^{(1)} = \begin{bmatrix}
+0 \\
+-\epsilon \\
+0 \\
+\epsilon
+\end{bmatrix}$$
+
+$$q_3^{(2)} = \begin{bmatrix}
+0 \\
+-\epsilon \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{\langle q_2, q_3^{(1)} \rangle}{\langle q_2, q_2 \rangle}q_2$$
+
+$$q_3^{(2)} = \begin{bmatrix}
+0 \\
+-\epsilon \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{\epsilon^2}{2\epsilon^2}q_2$$
+
+$$q_3^{(2)} = \begin{bmatrix}
+0 \\
+-\epsilon \\
+0 \\
+\epsilon
+\end{bmatrix}
+- \frac{1}{2}q_2$$
+
+$$q_3^{(2)} = \begin{bmatrix}
+0 \\
+-\frac{\epsilon}{2} \\
+\frac{\epsilon}{2} \\
+\epsilon
+\end{bmatrix}$$
+
+$$q_2^Tq_3 =
+0 * 0
+-\epsilon * \frac{-\epsilon}{2}
++ \epsilon * \frac{-\epsilon}{2}
++ 0 * \epsilon = 0$$
 
 ### 2.c
 
-TODO
+We got the same result for both methods. The modified Gram-Schmidt and Classical
+Gram-Schmidt should return the same results, other than issues caused by fixed
+floating point representations. Since we're doing this by hand, not all the
+errors that would occur in a machine occur here. That explains why there are no
+minute differences.
 
 ## 3. Comparison of Algorithms
 
@@ -138,9 +332,54 @@ $$x_1=\frac{1}{1+\epsilon^2}$$
 $$x_2=-\frac{1}{\epsilon^2+\epsilon^4} + \frac{1}{\epsilon^2}$$
 $$x_3=\frac{1}{\epsilon^2+\epsilon^4} - \frac{1}{\epsilon^2}$$
 
-TODO: check this
 
 ### 3.b
+
+```
+>> q3
+Epsilon = 2.2204e-16:
+  - Normal equations: err = 1.633, residual = 1.7206e-08
+  - ClassicalGS: err = 1.5411, residual = 1.825e-08
+  - ModifiedGS: err = 1.633, residual = 1.7206e-08
+  - Householder: err = 1.633, residual = 1.7206e-08
+  - Givens: err = 1.2247, residual = 2.1073e-08
+  - QR: err = 1.633, residual = 1.7206e-08
+  - Backslash: err = 1.633, residual = 1.7206e-08
+  - SVD: err = 1.633, residual = 1.7206e-08
+  - TSVD: err = 1.633, residual = 1.7206e-08
+Epsilon = 2.2204e-16:
+  - Normal equations: err = 1.4142, residual = 1.4901e-08
+  - ClassicalGS: err = 1.4142, residual = 1.4901e-08
+  - ModifiedGS: err = 1.4142, residual = 1.4901e-08
+  - Householder: err = 1.633, residual = 8.6032e-09
+  - Givens: err = 1.2247, residual = 1.0537e-08
+  - QR: err = 1.633, residual = 8.6032e-09
+  - Backslash: err = 1.633, residual = 8.6032e-09
+  - SVD: err = 1.633, residual = 8.6032e-09
+  - TSVD: err = 1.633, residual = 8.6032e-09
+Epsilon = 2.2204e-16:
+    <missing>
+  - ClassicalGS: err = 0, residual = 4.4409e-16
+  - ModifiedGS: err = 0, residual = 4.4409e-16
+  - Householder: err = 0.8165, residual = 2.564e-16
+  - Givens: err = 0, residual = 4.4409e-16
+  - QR: err = 0, residual = 4.4409e-16
+  - Backslash: err = 0, residual = 4.4409e-16
+  - SVD: err = 0.8165, residual = 3.3918e-16
+  - TSVD: err = 0.8165, residual = 3.3918e-16
+Epsilon = 2.2204e-16:
+    <missing>
+  - ClassicalGS: err = 0, residual = 2.2204e-16
+  - ModifiedGS: err = 0, residual = 2.2204e-16
+  - Householder: err = 0.8165, residual = 1.282e-16
+  - Givens: err = 0, residual = 2.2204e-16
+  - QR: err = 0, residual = 2.2204e-16
+  - Backslash: err = 0, residual = 2.2204e-16
+  - SVD: err = 0.8165, residual = 2.564e-16
+  - TSVD: err = 0.8165, residual = 2.564e-16
+```
+When very close to the machine precision solving via the normal equations
+doesn't work since "Matrix is singular to working precision."
 
 ## 4. Regularization
 
@@ -250,11 +489,11 @@ you wouldn't be otherwise able to solve.
 
 ### 5.a
 
-[TSVD Mandrill](./q5-mandrill.png)
+![TSVD Mandrill](./q5-mandrill.png)\
 
 
 
-[TSVD Durer](./q5-durer.png)
+![TSVD Durer](./q5-durer.png)\
 
 
 
