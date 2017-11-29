@@ -57,7 +57,7 @@ is contradicted since our convergence condition fails.
 
 Since $B$ is symmetric we can express the condition number of it in terms of:
 
-$$\kappa _2(B) = \frac{|\lambda |_{max}}{|\lambda|_{min}$$
+$$\kappa _2(B) = \frac{|\lambda |_{max}}{|\lambda|_{min}}$$
 
 Since $A$ is also symmetric, we can find the eigenvalues of $B$ by adding
 $(\alpha h)^2 I$ to each eigenvalue of $A$.
@@ -118,6 +118,63 @@ $\cos$ terms get closer to $1, -1$.
 
 
 ### 2.b
+
+```
+N = 31, n = 961, k2(B) = 4.143451e+02
+jacobi: 2000 iters
+gaussSeidel: 1108 iters
+SOR: 1090 iters
+cg: 52 iters
+pcg: 23 iters
+
+N = 31, n = 961, k2(B) = 2.752810e+02
+jacobi: 1525 iters
+gaussSeidel: 764 iters
+SOR: 752 iters
+cg: 50 iters
+pcg: 22 iters
+
+N = 31, n = 961, k2(B) = 8.994868e+00
+jacobi: 61 iters
+gaussSeidel: 34 iters
+SOR: 33 iters
+cg: 20 iters
+pcg: 7 iters
+
+N = 63, n = 3969, k2(B) = 1.659380e+03
+jacobi: 2000 iters
+gaussSeidel: 2000 iters
+SOR: 2000 iters
+cg: 102 iters
+pcg: 42 iters
+
+N = 63, n = 3969, k2(B) = 1.101665e+03
+jacobi: 2000 iters
+gaussSeidel: 2000 iters
+SOR: 2000 iters
+cg: 100 iters
+pcg: 37 iters
+
+N = 63, n = 3969, k2(B) = 3.309512e+01
+jacobi: 218 iters
+gaussSeidel: 113 iters
+SOR: 111 iters
+cg: 40 iters
+pcg: 13 iters
+```
+
+We see that the speed of convergence is: Jacobi > Gauss-Seidel > SOR > CG > PCG.
+
+The difference in speed of convergence makes sense since that's what the
+theoretical convergence rates of the different methods tells us. We also see
+that with varying $N, \alpha$ params that the speed of convergence is correlated
+with the condition number. Problems that are better conditioned converge faster.
+
+
+![](./q2.png)\
+
+
+
 
 ## 3. Suppose we wish to solve Ax = b ...
 
