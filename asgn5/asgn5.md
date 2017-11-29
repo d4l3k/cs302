@@ -1,7 +1,7 @@
 ![](../rainbow.png)\
 
 
-# CPSC 302 - Assignment 4
+# CPSC 302 - Assignment 5
 
 Tristan Rice, q7w9a, 25886145
 
@@ -55,6 +55,68 @@ is contradicted since our convergence condition fails.
 
 ### 2.a
 
+Since $B$ is symmetric we can express the condition number of it in terms of:
+
+$$\kappa _2(B) = \frac{|\lambda |_{max}}{|\lambda|_{min}$$
+
+Since $A$ is also symmetric, we can find the eigenvalues of $B$ by adding
+$(\alpha h)^2 I$ to each eigenvalue of $A$.
+
+$$\lambda _{l,m} = 4 - 2 (\cos(l \pi h) + \cos(m \pi h)) + (\alpha h)^2,
+1 \leq l,m \leq N$$
+
+We need to find the maximum and minimum eigenvalues to determine the condition
+number.
+
+Since $\cos(0) = 1, \cos(\pi) = -1$ we see that having $l = m = 1$ minimizes the
+second term and results in the smallest eigenvector.
+
+The largest eigenvector is found when $l\pi h, m\pi h$ are close to $\pi$ since
+that maximizes the second term.
+
+$$\lambda_{min} = 4 - 2 (\cos (1 \pi h) + \cos(1 \pi h)) + (\alpha h)^2$$
+$$\lambda_{max} = 4 - 2 (\cos (\lfloor N \rfloor \pi h) + \cos(\lfloor N \rfloor \pi h)) + (\alpha h)^2$$
+
+$$\kappa _2 (B) = \frac{
+4 - 2 (\cos (1 \pi h) + \cos(1 \pi h)) + (\alpha h)^2
+}{
+4 - 2 (\cos (\lfloor N \rfloor \pi h) + \cos(\lfloor N \rfloor \pi h)) + (\alpha h)^2
+}$$
+
+$$\kappa _2 (B) = \frac{
+4 - 2 (\cos (\lfloor N \rfloor \pi  \frac{1}{N+1}) + \cos(\lfloor N \rfloor \pi  \frac{1}{N+1})) + (\alpha  \frac{1}{N+1})^2
+}{
+4 - 2 (\cos (1 \pi \frac{1}{N+1}) + \cos(1 \pi  \frac{1}{N+1})) + (\alpha  \frac{1}{N+1})^2
+}$$
+
+```m
+octave:45> n = 1:20; N = sqrt(n)
+N =
+
+ Columns 1 through 18:
+
+   1.0000   1.4142   1.7321   2.0000   2.2361   2.4495   2.6458   2.8284   3.0000   3.1623   3.3166   3.4641   3.6056   3.7417   3.8730   4.0000   4.1231   4.2426
+
+ Columns 19 and 20:
+
+   4.3589   4.4721
+
+octave:46> k2 = (4 -2 * (cos(floor(N) * pi /(N+1)) + cos(floor(N) * pi / (N+1))) + (alpha./(N+1)).^2)./(4-2*(cos(pi./(N+1)) + cos(pi./(N+1))) + (alpha./(N+1)).^2)
+k2 =
+
+ Columns 1 through 18:
+
+   1.2381   1.5050   1.7508   1.9843   2.2095   2.4285   2.6428   2.8532   3.0605   3.2650   3.4673   3.6676   3.8660   4.0629   4.2584   4.4526   4.6456   4.8376
+
+ Columns 19 and 20:
+
+   5.0286   5.2186
+```
+
+We see that increasing $n$ causes the condition number to increase since the
+$\cos$ terms get closer to $1, -1$.
+
+
 ### 2.b
 
 ## 3. Suppose we wish to solve Ax = b ...
@@ -74,6 +136,8 @@ N/A
 ## 4. The smoothing factor ...
 
 ### 4.a
+
+$A$ is the discrete Laplacian.
 
 ### 4.b
 
