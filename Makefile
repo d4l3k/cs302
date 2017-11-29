@@ -5,6 +5,7 @@ PDFS = $(patsubst %.md,%.pdf,$(MDS))
 MS = $(shell find */ -name "*.m")
 PDFS += $(patsubst %.m,%.pdf,$(MS))
 
+.PHONY: all
 all: $(PDFS)
 
 %.pdf: %.md
@@ -28,6 +29,10 @@ asgn3.pdf: $(ASGN3_PDFS)
 ASGN4_PDFS = $(shell find asgn4 -name "*.pdf" | sort)
 asgn4.pdf: $(ASGN4_PDFS)
 	pdfunite $(ASGN4_PDFS) asgn4.pdf
+
+ASGN5_PDFS = $(shell find asgn5 -name "*.pdf" | sort)
+asgn5.pdf: $(ASGN5_PDFS)
+	pdfunite $(ASGN5_PDFS) asgn5.pdf
 
 NOTE_PDFS = $(shell find notes -name "*.pdf" | sort)
 notes.pdf: $(NOTE_PDFS)
