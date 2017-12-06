@@ -34,6 +34,10 @@ ASGN5_PDFS = $(shell find asgn5 -name "*.pdf" | sort)
 asgn5.pdf: $(ASGN5_PDFS)
 	pdfunite $(ASGN5_PDFS) asgn5.pdf
 
+ASGN6_PDFS = $(shell find asgn6 -name "*.pdf" | sort)
+asgn6.pdf: $(ASGN6_PDFS)
+	pdfunite $(ASGN6_PDFS) asgn6.pdf
+
 NOTE_PDFS = $(shell find notes -name "*.pdf" | sort)
 notes.pdf: $(NOTE_PDFS)
 	pdfunite $(NOTE_PDFS) notes.pdf
