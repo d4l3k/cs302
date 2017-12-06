@@ -127,8 +127,10 @@ We see that an eigenvalue of 41 converges much faster than an eigenvalue of 43
 since it's closer to the dominant eigenvalue--40.
 
 
-For Rayleigh quotient it doesn't converge since inverse iteration is only
-converging if the shift is greater than the largest eigenvalue.
+For Rayleigh quotient it doesn't converge to the largest eigenvalue since
+inverse iteration is only converging to the largest eigenvalue if the shift is
+closest to the largest eigenvalue. It ends up converging to a smaller
+eigenvalue.
 
 
 ## 4.
